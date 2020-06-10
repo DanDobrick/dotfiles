@@ -1,0 +1,8 @@
+[submodule "zsh/custom/themes/powerlevel10k"]
+	path = zsh/custom/themes/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
+	branch = master
+[submodule "zsh/custom/plugins/autoupdate"]
+	path = zsh/custom/plugins/autoupdate
+	url = https://github.com/TamCore/autoupdate-oh-my-zsh-plugins
+	branch = master

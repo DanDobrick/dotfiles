@@ -1,0 +1,34 @@
+[core]
+# Excludesfiles allows us to set a global list of things to ignore
+  excludesfile = %USERPROFILE%\\.gitignore
+  editor = vim
+
+# These are custom color options for the console
+[color]
+  status = auto
+  diff = auto
+
+[color "status"]
+  untracked = cyan
+  changed = green
+  added = yellow
+
+# Aliases are command shortcuts
+[alias]
+  co = checkout
+
+  # WIP commit
+  wip = !git add . && git commit -m "WIP"
+
+  # Edit the last commit
+  amend = commit --verbose --amend
+
+  ohshit = !git add . && git commit --no-verify --amend --no-edit
+  oshit = ohshit
+
+[user]
+  name = Dan Dobrick
+  email = dandobrick@gmail.com
+
+[include]
+  path = ~/.local/gitconfig

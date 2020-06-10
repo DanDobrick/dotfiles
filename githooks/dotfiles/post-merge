@@ -1,0 +1,3 @@
+#!/bin/zsh
+rcup -v
+source ~/.zshrc
