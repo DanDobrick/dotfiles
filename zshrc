@@ -41,6 +41,7 @@ plugins=(
     osx
     bundler
     autoupdate
+    aws
 #     zsh-autocomplete
 )
 
@@ -49,9 +50,12 @@ source $ZSH/oh-my-zsh.sh
 ########################
 # Aliases
 ########################
-# General
+# git
 alias gl='git log'
 alias gs='git status'
+alias ggfetch='gfa'
+
+# General
 alias ls='ls -G'
 alias ll='ls -lah'
 alias e=$EDITOR
@@ -126,7 +130,7 @@ function update() {
     fi
   fi
 
-  if type rvm &>/dev/null; then 
+  if type rvm &>/dev/null; then
     echo 'Update rvm? (y/n)'
     read confirmation
     if [[ $confirmation == 'y' ]]; then
@@ -134,7 +138,7 @@ function update() {
     fi
   fi
 
-  if type nvm &>/dev/null; then 
+  if type nvm &>/dev/null; then
     echo 'Update nvm? (y/n)'
     read confirmation
     if [[ $confirmation == 'y' ]]; then
