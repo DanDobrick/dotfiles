@@ -59,9 +59,9 @@ alias ggfetch='gfa'
 # ls color + symbols for OSX and Linux
 if ls --help 2>&1 | grep -q -- --color
 then
-    alias ls='ls --color=auto -F'
+  alias ls='ls --color=auto -F'
 else
-    alias ls='ls -GF'
+  alias ls='ls -GF'
 fi
 
 alias ll='ls -lah'
@@ -149,13 +149,17 @@ function update-dotfiles() {
 function link-ruby-hooks() {
   hooks_dir=~/.dotfiles/githooks/ruby
 
+  # Check if it's a git repo
   if [ -d .git ]; then
     git_dir=$(git rev-parse --git-dir)
 
+    # If there are no args
     if [ $# -eq 0 ]; then
       echo "${PURPLE}Linking all ruby githooks..."
       ln -sf $hooks_dir/* $git_dir/hooks/
     else
+      # Loop through args and check if the hooks exist in the dotfiles repo
+      # Link them if so, echo in red if not; but keep going.
       for hook_name in "$@"; do
         if ! test -f $hooks_dir/$hook_name; then
           echo "${RED}${hook_name} is not a ruby githook.${NC}"
@@ -166,13 +170,17 @@ function link-ruby-hooks() {
       done
     fi  
   else
+    # If it's not a git repo, echo the err to user
     git rev-parse --git-dir 2> /dev/null;
   fi;
 }
 
 # Update with brew/apt, RVM and NVM
 function update() {
+  # pull dotfiles master
   update-dotfiles
+
+  # OSX
   if [[ $OSTYPE == darwin* ]]; then
     echo -e "\n${PURPLE}Update brew + apps installed with brew? (y/n)${NC}"
     read confirmation
@@ -180,6 +188,7 @@ function update() {
       brew update
       brew upgrade
     fi
+  # Ubuntu
   elif [[ $OSTYPE == linux-gnu* ]]; then
     echo "${PURPLE}Update system? (y/n)${NC}"
     read confirmation
@@ -189,6 +198,7 @@ function update() {
     fi
   fi
 
+  # RVM
   if type rvm &>/dev/null; then
     echo -e "${PURPLE}Update rvm? (y/n)${NC}"
     read confirmation
@@ -197,6 +207,7 @@ function update() {
     fi
   fi
 
+  # NVM
   if type nvm &>/dev/null; then
     echo -e "${PURPLE}Update nvm? (y/n)${NC}"
     read confirmation
@@ -220,7 +231,7 @@ else
   fi
 fi
 
-# mkdir + cd
+# mkdir + cd into it
 function mkcd() {
   mkdir -p "$1" && cd "$1";
 }
