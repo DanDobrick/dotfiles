@@ -58,10 +58,11 @@ alias ggfetch='gfa'
 # General
 alias ls='ls -G'
 alias ll='ls -lah'
-alias e=$EDITOR
+alias e='eval ${EDITOR}'
 
 # Reload changes to this file
-alias sourcezsh='source ~/.zshrc'
+alias sourcez='source ~/.zshrc'
+alias sourcezsh='sourcez'
 
 alias simple-server='python -m SimpleHTTPServer'
 
