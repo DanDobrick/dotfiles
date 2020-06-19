@@ -94,8 +94,15 @@ setopt SHARE_HISTORY # Share history between session/terminals
 ########################
 # nvm
 ########################
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+########################
+# rvm
+########################
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
 
 ########################
 # Misc
@@ -105,6 +112,9 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 # To add more, check out https://stackoverflow.com/a/28938235/7111330
 PURPLE='\033[0;35m'
 YELLOW='\033[0;33m'
+RED='\033[0;31m'
+
+# No color
 NC='\033[0m'
 
 # update dotfiles
@@ -140,15 +150,16 @@ function link-ruby-hooks() {
 
 # Update with brew/apt, RVM and NVM
 function update() {
+  update-dotfiles
   if [[ $OSTYPE == darwin* ]]; then
-    echo 'Update brew + apps installed with brew? (y/n)'
+    echo "\n${PURPLE}Update brew + apps installed with brew? (y/n)${NC}"
     read confirmation
     if [[ $confirmation == 'y' ]]; then
       brew update
       brew upgrade
     fi
   elif [[ $OSTYPE == linux-gnu* ]]; then
-    echo 'NOT WORKING AT THIS TIME'
+    echo "${RED}NOT WORKING AT THIS TIME${NC}"
     exit 1
     echo 'Update system? (y/n)'
     read confirmation
@@ -159,7 +170,7 @@ function update() {
   fi
 
   if type rvm &>/dev/null; then
-    echo 'Update rvm? (y/n)'
+    echo "${PURPLE}Update rvm? (y/n)${NC}"
     read confirmation
     if [[ $confirmation == 'y' ]]; then
       rvm get stable
@@ -167,8 +178,9 @@ function update() {
   fi
 
   if type nvm &>/dev/null; then
-    echo 'Update nvm? (y/n)'
+    echo "${PURPLE}Update nvm? (y/n)${NC}"
     read confirmation
+
     if [[ $confirmation == 'y' ]]; then
       curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
     fi
