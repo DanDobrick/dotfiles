@@ -152,16 +152,14 @@ function link-ruby-hooks() {
 function update() {
   update-dotfiles
   if [[ $OSTYPE == darwin* ]]; then
-    echo "\n${PURPLE}Update brew + apps installed with brew? (y/n)${NC}"
+    echo -e "\n${PURPLE}Update brew + apps installed with brew? (y/n)${NC}"
     read confirmation
     if [[ $confirmation == 'y' ]]; then
       brew update
       brew upgrade
     fi
   elif [[ $OSTYPE == linux-gnu* ]]; then
-    echo "${RED}NOT WORKING AT THIS TIME${NC}"
-    exit 1
-    echo 'Update system? (y/n)'
+    echo "${PURPLE}Update system? (y/n)${NC}"
     read confirmation
     if [[ $confirmation == 'y' ]]; then
       sudo apt-get update
@@ -170,7 +168,7 @@ function update() {
   fi
 
   if type rvm &>/dev/null; then
-    echo "${PURPLE}Update rvm? (y/n)${NC}"
+    echo -e "${PURPLE}Update rvm? (y/n)${NC}"
     read confirmation
     if [[ $confirmation == 'y' ]]; then
       rvm get stable
@@ -178,7 +176,7 @@ function update() {
   fi
 
   if type nvm &>/dev/null; then
-    echo "${PURPLE}Update nvm? (y/n)${NC}"
+    echo -e "${PURPLE}Update nvm? (y/n)${NC}"
     read confirmation
 
     if [[ $confirmation == 'y' ]]; then
