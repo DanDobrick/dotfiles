@@ -101,6 +101,33 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 # Misc
 ########################
 
+# COLORS!!
+# To add more, check out https://stackoverflow.com/a/28938235/7111330
+PURPLE='\033[0;35m'
+YELLOW='\033[0;33m'
+NC='\033[0m'
+
+# update dotfiles
+function update-dotfiles() {
+  echo -e "${PURPLE}Updating dotfiles by pulling changes from remote master....\n${NC}"
+
+  if [[ $(git -C ~/.dotfiles rev-parse --abbrev-ref HEAD) == 'master' ]]; then
+    git -C ~/.dotfiles pull origin master > /dev/null
+  else
+    echo -e "${YELLOW}Dotfiles repo not on master branch\nStashing any changes...\n${NC}"
+    git -C ~/.dotfiles stash > /dev/null
+    echo -e "${PURPLE}Checking out and pulling master branch...\n${NC}"
+    git -C ~/.dotfiles checkout master > /dev/null
+    git -C ~/.dotfiles pull origin master > /dev/null
+    echo -e "${PURPLE}Checking out prior branch and applying stashed changes...${NC}"
+    git -C ~/.dotfiles checkout - > /dev/null
+    git -C ~/.dotfiles stash apply > /dev/null
+    git -C ~/.dotfiles stash drop > /dev/null
+  fi;
+
+  source ~/.zshrc
+}
+
 # copy ruby hooks to current project's hook dir
 function link-ruby-hooks() {
   if [ -d .git ]; then
