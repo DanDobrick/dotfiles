@@ -1,19 +1,21 @@
 # Dotfiles
-My dotfiles.
+My dotfiles. Uses Thoughtbot's [rcm](https://github.com/thoughtbot/rcm) to symlink files in this repo to your home directory. See the [rcm documentation](https://thoughtbot.github.io/rcm/rcm.7.html) for more information.
+
 ## Install
 
-This will install all prerequisites + symlink dotfiles; the script will require your password at various points.
-
-Clone this repo:
+### Clone this repo:
 ```bash
-git clone --recursive https://github.com/DanDobrick/dotfiles.git ~/.dotfiles
-```
-Run Install script
-```bash
-~/.dotfiles/install.sh
+$ git clone --recursive https://github.com/DanDobrick/dotfiles.git ~/.dotfiles
 ```
 
-For manual installation see install.sh
+### Run the install script
+
+This will install all prerequisites + symlink dotfiles; the script will require your password at various times. Please check out [install.sh](https://github.com/DanDobrick/dotfiles/blob/master/install.sh) to see what it's doing before inputting any sensitive info while installing.
+```bash
+$ ~/.dotfiles/install.sh
+```
+
+For manual installation see [install.sh](https://github.com/DanDobrick/dotfiles/blob/master/install.sh) and tweak as you see fit.
 
 ## Githooks
 
@@ -42,13 +44,11 @@ $ link-ruby-hooks
 ```
 
 ## Local Changes
-To allow each machine to tweak the individual configuration, the install script creates files in the `/local` folder which will be symlinked to `~` and sourced/copied/etc appropriately depending on the config file. The folder has been `.gitignored` so any changes to the file will _not_ be commited to the repo; edit as you see fit.
+To allow each machine to tweak its configuration, the install script creates files in the `/local` folder which will be symlinked to your home dir (`~`) and sourced/copied/etc appropriately depending on the config file. The folder has been `.gitignore`'d so any changes to the file will _not_ be commited to the repo; edit as you see fit.
 
-Current list of local files:
+List of local files supported:
 - `local/gitconfig`
 - `local/aliases`
 
 ## TODO
-- color prompt
-- Fix update function for ubuntu, possibly offload to script.
- 
+- All caught up!
