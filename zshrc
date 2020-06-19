@@ -56,7 +56,14 @@ alias gs='git status'
 alias ggfetch='gfa'
 
 # General
-alias ls='ls -G'
+# ls color + symbols for OSX and Linux
+if ls --help 2>&1 | grep -q -- --color
+then
+    alias ls='ls --color=auto -F'
+else
+    alias ls='ls -GF'
+fi
+
 alias ll='ls -lah'
 alias e='eval ${EDITOR}'
 
