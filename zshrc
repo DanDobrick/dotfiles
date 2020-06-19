@@ -147,9 +147,24 @@ function update-dotfiles() {
 
 # copy ruby hooks to current project's hook dir
 function link-ruby-hooks() {
+  hooks_dir=~/.dotfiles/githooks/ruby
+
   if [ -d .git ]; then
     git_dir=$(git rev-parse --git-dir)
-    ln -sf ~/.dotfiles/githooks/ruby/* $git_dir/hooks/
+
+    if [ $# -eq 0 ]; then
+      echo "${PURPLE}Linking all ruby githooks..."
+      ln -sf $hooks_dir/* $git_dir/hooks/
+    else
+      for hook_name in "$@"; do
+        if ! test -f $hooks_dir/$hook_name; then
+          echo "${RED}${hook_name} is not a ruby githook.${NC}"
+        else
+          echo "${PURPLE}Linking ${hook_name}...\n${NC}"
+          ln -sf $hooks_dir/$hook_name $git_dir/hooks/$hook_name
+        fi
+      done
+    fi  
   else
     git rev-parse --git-dir 2> /dev/null;
   fi;
