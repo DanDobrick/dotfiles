@@ -19,6 +19,10 @@ For manual installation see install.sh
 ### Ruby
 - `pre-commit` runs rubocop for any changed/renamed/added files
 - `commit-msg` adds ticket name/number to commit message if formatted like `words/[PROJ-123]/words`
+- `pre-commit`* runs rubocop for any changed/renamed/added files
+- `pre-push`* runs bundle-audit, preventing a push if the command fails.
+
+>\* denotes commands that run using `bundle exec`
 
 These will NOT be symlinked via the install script or `rcup` so they must be copied manually.
 
