@@ -66,6 +66,11 @@ if ! test -f $local_dir/aliases; then
   printf "# Add local aliases\n# Example:\n# alias a='echo \"AWESOME\"'" >> $local_dir/aliases
 fi
 
+# Local functions
+if ! test -f $local_dir/functions; then
+  printf "# Add local functions to this file\n" >> $local_dir/functions
+fi
+
 echo 'Installing dotfiles...'
 RCRC=$dotfiles_dir/rcrc rcup -v
 

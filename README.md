@@ -49,6 +49,7 @@ To allow each machine to tweak its configuration, the install script creates fil
 List of local files supported:
 - `local/gitconfig`
 - `local/aliases`
+- `local/functions`
 
 ## TODO
-- All caught up!
+- Default files for ^^ so there is not an error as files are added to this list ^^ and install script is not run.

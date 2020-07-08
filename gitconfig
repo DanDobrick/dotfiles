@@ -33,3 +33,5 @@
 
 [include]
   path = ~/.local/gitconfig
+[pull]
+	ff = only

@@ -248,3 +248,6 @@ function man() {
     LESS_TERMCAP_us=$(printf "\e[1;32m") \
     man "$@"
 }
+
+# Local functions should overwrite
+source $HOME/.local/functions
