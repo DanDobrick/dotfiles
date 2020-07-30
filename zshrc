@@ -42,7 +42,7 @@ plugins=(
     bundler
     autoupdate
     aws
-#     zsh-autocomplete
+    zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh

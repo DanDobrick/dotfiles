@@ -6,3 +6,7 @@
 	path = zsh/custom/plugins/autoupdate
 	url = https://github.com/TamCore/autoupdate-oh-my-zsh-plugins
 	branch = master
+[submodule "zsh/custom/plugins/zsh-autosuggestions"]
+	path = zsh/custom/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+	branch = master
