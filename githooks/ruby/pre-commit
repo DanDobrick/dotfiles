@@ -1,6 +1,7 @@
 #!/bin/sh
 #
+changed_files=$(git status -s | grep -E 'A|M' | awk '{print $2}')
+changed_files="$changed_files $(git status -s | grep -E 'R' | awk '{print $4}')"
+
 # Run rubocop before commits
-files=$(git status -s | grep -E 'A|M' | awk '{print $2}')
-files="$files $(git status -s | grep -E 'R' | awk '{print $4}')"
-echo $files | xargs bundle exec rubocop --display-cop-names --extra-details --parallel --force-exclusion
+echo $changed_files | xargs bundle exec rubocop --display-cop-names --extra-details --parallel --force-exclusion
