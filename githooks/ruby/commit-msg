@@ -6,6 +6,5 @@ tickets = branch.scan(/[a-zA-Z]{2,6}-\d+/)
 
 if tickets.any?
   ticket_string = "[#{tickets.join('][')}]"
-  `echo '' >> #{ARGV[0]}`
-  `echo #{ticket_string} >> #{ARGV[0]}`
+  `echo "#{ticket_string} $(cat #{ARGV[0]})" > #{ARGV[0]}`
 end

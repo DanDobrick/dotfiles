@@ -10,3 +10,4 @@ alias awsume=". awsume"
 
 #Auto-Complete function for AWSume
 fpath=(~/.awsume/zsh-autocomplete/ $fpath)
+source "$HOME/.cargo/env"

@@ -38,7 +38,7 @@ ZSH_CUSTOM=$HOME/.zsh/custom
 plugins=(
     git
     ruby
-    osx
+    macos
     bundler
     autoupdate
     aws
@@ -46,6 +46,9 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+
+# Tab + Enter for accepting auto-suggest
+bindkey '^I ' autosuggest-accept
 
 ########################
 # Aliases
@@ -168,7 +171,7 @@ function link-ruby-hooks() {
           ln -sf $hooks_dir/$hook_name $git_dir/hooks/$hook_name
         fi
       done
-    fi  
+    fi
   else
     # If it's not a git repo, echo the err to user
     git rev-parse --git-dir 2> /dev/null;
@@ -230,6 +233,9 @@ else
     export EDITOR='vim'
   fi
 fi
+
+# Preferred editor for kubectl
+export KUBE_EDITOR='vim'
 
 # mkdir + cd into it
 function mkcd() {
