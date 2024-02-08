@@ -35,3 +35,6 @@
   path = ~/.local/gitconfig
 [pull]
 	ff = only
+
+[help]
+  autocorrect = prompt
